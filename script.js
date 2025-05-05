@@ -28,32 +28,70 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playRound(lcHumanChoice, computerChoice) {
+    //If player choice is rock and computer choice is paper, declare player the loser, increment the computer's score by 1 and return that score
     if (lcHumanChoice === "rock" && computerChoice === "paper") {
         log("You lose! Paper beats rock.");
         computerScore = ++computerScore;
+        return computerScore;
+    //If player choice is rock and computer choice is scissors, declare player the winner, increment the player's score by 1 and return that score
     } else if (lcHumanChoice === "rock" && computerChoice === "scissors") {
         log("You win! Rock beats scissors.");
         humanScore = ++humanScore;
+        return humanScore;
+    //If player choice is paper and computer choice is rock, declare player the winner, increment the player's score by 1 and return that score
     } else if (lcHumanChoice === "paper" && computerChoice === "rock") {
         log("You win! Paper beats rock.");
         humanScore = ++humanScore;
+        return humanScore;
+    //If player choice is paper and computer choice is scissors, declare player the loser, increment the computer's score by 1 and return that score
     } else if (lcHumanChoice === "paper" && computerChoice === "scissors") {
         log("You lose! Scissors beats paper");
         computerScore = ++computerScore;
+        return computerScore;
+    //If player choice is scissors and computer choice is rock, declare player the loser, increment the computer's score by 1 and return that score
     } else if (lcHumanChoice === "scissors" && computerChoice === "rock") {
         log("You lose! Rock beats scissors");
         computerScore = ++computerScore;
+        return computerScore;
+    //If player choice is scissors and computer choice is paper, declare player the winner, increment the player's score by 1 and return that score
     } else if (lcHumanChoice === "scissors" && computerChoice === "paper") {
         log("You win! Scissors beats paper");
         humanScore = ++humanScore;
+        return humanScore;
+    //If none of the previous conditions are met, declare the round as a tie
     } else {
         log("It's a tie!");
     }
-    log("Your score is " + +humanScore);
-    log("Computer score is " + +computerScore);
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+function playGame() {
+    //Invoke the playRound() function 5 times and log the score as the game progresses
+    playRound(getHumanChoice(), getComputerChoice());
+    log("Your score is " + +humanScore);
+    log("Computer score is " + +computerScore);
+    playRound(getHumanChoice(), getComputerChoice());
+    log("Your score is " + +humanScore);
+    log("Computer score is " + +computerScore);
+    playRound(getHumanChoice(), getComputerChoice());
+    log("Your score is " + +humanScore);
+    log("Computer score is " + +computerScore);
+    playRound(getHumanChoice(), getComputerChoice());
+    log("Your score is " + +humanScore);
+    log("Computer score is " + +computerScore);
+    playRound(getHumanChoice(), getComputerChoice());
+    log("Your score is " + +humanScore);
+    log("Computer score is " + +computerScore);
 
-playRound(humanSelection, computerSelection);
+    //If the player's score is greater than the computer's, declare the player the winner
+    if (humanScore > computerScore) {
+        log("You Win!");
+    //If the scores are a tie, declare the game as a tie
+    } else if (humanScore === computerScore) {
+        log("It's a tie!?");
+    //If neither conditions are met, declare the computer the winner
+    } else {
+        log("Computer Wins!")
+    }
+}
+
+playGame()
